@@ -12,7 +12,7 @@ import AVFoundation
 class ViewController: UIViewController{
     
     var audioPlayer: AVAudioPlayer!
-    let soundArray=["note1","note2","note3","note4","note5","note6","note7"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,7 +20,16 @@ class ViewController: UIViewController{
 
 
     @IBAction func notePressed(_ sender: UIButton) {
-        playSoud(soundPlay : soundArray[sender.tag-1])
+        print("Start")
+        playSoud(soundPlay : sender.currentTitle!)
+        
+        sender.alpha=0.5
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha=1
+        }
+        print("End")
+        
     }
     
     func playSoud(soundPlay : String){
@@ -33,6 +42,7 @@ class ViewController: UIViewController{
         }
         
         audioPlayer.play()
+       
     }
   
 
